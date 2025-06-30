@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-
 import { ConfigModule } from '@nestjs/config';
 import { environments } from './config/environments';
 import { validationSchema } from './config/validationEnv';
@@ -16,8 +15,8 @@ import { MedicalCheckupModule } from './medical-checkups/medical-checkups.module
       validationSchema,
       isGlobal: true,
     }),
-    MedicalCheckupModule,
-    DatabaseModule,
+    DatabaseModule,              // Conexion a tu BD usando variables del .env
+    MedicalCheckupModule,        // Microservicio de chequeos médicos
   ],
 })
 export class AppModule {}

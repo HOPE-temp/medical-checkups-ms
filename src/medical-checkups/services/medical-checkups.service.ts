@@ -18,7 +18,7 @@ import {
 } from '../dto/update-medical-checkup.dto';
 import { MedicalCheckup } from '../entities/medical-checkup.entity';
 import { FilterMedicalCheckupDto } from '../dto/filter-medical-checkup.dto';
-import { StatusMedicalCheckup } from '../models/medialCheckup.status.model';
+import { StatusMedicalCheckup } from '../models/medicalCheckup.status.model';
 import { validateStatusFlow } from 'src/common/utils/statusFlow.util';
 import { medialCheckupStatusFlow } from '../flows/medical-checkup.flow';
 

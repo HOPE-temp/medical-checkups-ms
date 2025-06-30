@@ -6,6 +6,7 @@ import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Validaciones globales
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -17,18 +18,25 @@ async function bootstrap() {
     }),
   );
 
+  // Serializador global
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
+  // Habilitar CORS para permitir peticiones desde el frontend
   app.enableCors();
 
+  // Configurar Swagger
   const config = new DocumentBuilder()
-    .setTitle('HOPE documentacion')
-    .setDescription('Docuemtanacion de los servicios de HOPE alberge')
+    .setTitle('HOPE - Chequeo Médico')
+    .setDescription('Microservicio para gestión de chequeos médicos')
     .setVersion('1.0')
     .build();
 
-  const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, documentFactory);
-  await app.listen(process.env.PORT ?? 3000);
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+
+  // Escuchar en el puerto del .env
+  const PORT = process.env.PORT ?? 3005;
+  await app.listen(PORT);
+  console.log(` Microservicio levantado en http://localhost:${PORT}/docs`);
 }
 bootstrap();

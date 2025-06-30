@@ -6,7 +6,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { StatusMedicalCheckup } from '../models/medialCheckup.status.model';
+import { StatusMedicalCheckup } from '../models/medicalCheckup.status.model';
 
 @Entity('medical_checkups')
 export class MedicalCheckup {
@@ -91,7 +91,7 @@ export class MedicalCheckup {
   treatment: string;
 
   @Column({
-    name: 'chechup_image_url',
+    name: 'checkup_image_url',
     type: 'varchar',
     length: 150,
     nullable: true,

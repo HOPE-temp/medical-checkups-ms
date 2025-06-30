@@ -11,6 +11,7 @@ import config from 'src/config/config';
       useFactory: (configService: ConfigType<typeof config>) => {
         const { username, host, port, root_password, database } =
           configService.mysql;
+
         return {
           type: 'mysql',
           host,
@@ -18,7 +19,7 @@ import config from 'src/config/config';
           username,
           password: root_password,
           database,
-          // entities: [],
+          entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: false,
           timezone: '0:00',
         };

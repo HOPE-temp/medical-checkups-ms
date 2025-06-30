@@ -26,7 +26,13 @@ import { FilterMedicalCheckupDto } from '../dto/filter-medical-checkup.dto';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleUser } from 'src/auth/models/roles.model';
 import { ApiOperation } from '@nestjs/swagger';
-
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+//Agregado
+@ApiTags('Medical Checkups')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('medical_checkups')
+//---
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('medical_checkups')
 export class MedicalCheckupController {

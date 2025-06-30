@@ -1,4 +1,4 @@
-import { StatusMedicalCheckup } from '../models/medialCheckup.status.model';
+import { StatusMedicalCheckup } from '../models/medicalCheckup.status.model';
 
 export const medialCheckupStatusFlow: Record<
   StatusMedicalCheckup,
