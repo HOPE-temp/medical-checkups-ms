@@ -6,15 +6,14 @@ import { MedicalCheckupController } from './controllers/medical-checkups.control
 import { MedicalCheckup } from './entities/medical-checkup.entity';
 
 // Importaciones relativas mientras todo está en un mismo proyecto
-import { UsersModule } from '../../../users-ms/src/users/users.module';
-import { AnimalsModule } from '../../../animal-ms/src/animals/animals.module';
+//import { UsersModule } from '../../../users-ms/src/users/users.module';
+//import { AnimalsModule } from '../../../animal-ms/src/animals/animals.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([MedicalCheckup]),
-    UsersModule,
-    AnimalsModule,
+    TypeOrmModule.forFeature([MedicalCheckup]), // 
   ],
+  
   controllers: [MedicalCheckupController],
   providers: [MedicalCheckupService],
   exports: [MedicalCheckupService],

@@ -9,7 +9,7 @@ import config from 'src/config/config';
     TypeOrmModule.forRootAsync({
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { username, host, port, root_password, database } =
+        const { username, host, port, password, database } =
           configService.mysql;
 
         return {
@@ -17,7 +17,7 @@ import config from 'src/config/config';
           host,
           port,
           username,
-          password: root_password,
+          password: password,
           database,
           entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: false,
