@@ -5,6 +5,7 @@ import { validationSchema } from './config/validationEnv';
 import configEnv from './config/config';
 import { DatabaseModule } from './database/database.module';
 import { MedicalCheckupModule } from './medical-checkups/medical-checkups.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { MedicalCheckupModule } from './medical-checkups/medical-checkups.module
       validationSchema,
       isGlobal: true,
     }),
+    AuthModule,
     DatabaseModule,              // Conexion a tu BD usando variables del .env
     MedicalCheckupModule,        // Microservicio de chequeos médicos
   ],
