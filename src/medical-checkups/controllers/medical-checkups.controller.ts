@@ -28,10 +28,7 @@ import { RoleUser } from 'src/auth/models/roles.model';
 import { ApiOperation } from '@nestjs/swagger';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 //Agregado
-@ApiTags('Medical Checkups')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Controller('medical_checkups')
+
 //---
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('medical_checkups')
@@ -53,7 +50,7 @@ export class MedicalCheckupController {
   }
 
   @Roles(RoleUser.ADMIN, RoleUser.VETERINARIAN)
-  @Get(':id')
+  @Get(':id')//: es variable
   @ApiOperation({ summary: 'Get a  medical checkup by Id' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.medicalCheckupService.findOne(id);
@@ -68,13 +65,13 @@ export class MedicalCheckupController {
   ) {
     return this.medicalCheckupService.update(id, updateMedicalCheckupDto);
   }
-
+  //hacer unc contrato de empezr chequeo y finalizar chequeo , correr los dosenpoints en el postman
   @Roles(RoleUser.VETERINARIAN)
   @Put(':id/start_checkup')
   @ApiOperation({ summary: 'Start medical checkup' })
   startCheckup(@Param('id', ParseIntPipe) id: number, @Req() request: Request) {
-    const { sub } = request.user as PayloadToken;
-    return this.medicalCheckupService.startCheckup(id, sub);
+    const { sub } = request.user as PayloadToken;//obtener informacion del token (sub y roll)
+    return this.medicalCheckupService.startCheckup(id, sub);//id de medical checkup , el su es del usuario
   }
 
   @Roles(RoleUser.VETERINARIAN)
@@ -83,16 +80,10 @@ export class MedicalCheckupController {
   endCheckup(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateEndCheckup: UpdateEndCheckup,
-    @Req() request: Request,
+   // @Req() request: Request,
   ) {
-    const { sub } = request.user as PayloadToken;
+    //const { sub } = request.user as PayloadToken;
     return this.medicalCheckupService.endCheckup(id, updateEndCheckup);
   }
 
-  @Roles(RoleUser.ADMIN, RoleUser.VETERINARIAN)
-  @Delete(':id/end_checkup')
-  @ApiOperation({ summary: 'Delete medical checkup' })
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.medicalCheckupService.remove(id);
-  }
 }

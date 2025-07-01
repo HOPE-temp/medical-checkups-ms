@@ -113,7 +113,7 @@ export class MedicalCheckupService {
     const res = await this.medicalCheckupRepo.save(medicalCheckup);
     return res;
   }
-
+//start checkup y endcheckup,  
   async endCheckup(id: number, updateEndCheckup: UpdateEndCheckup) {
     const medicalCheckup = await this.findOne(id);
     this.updateStatusMedicalCheckup(

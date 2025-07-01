@@ -91,7 +91,7 @@ export class MedicalCheckup {
   treatment: string;
 
   @Column({
-    name: 'checkup_image_url',
+    name: 'chechup_image_url',
     type: 'varchar',
     length: 150,
     nullable: true,
@@ -113,3 +113,8 @@ export class MedicalCheckup {
   })
   deletedAt: Date;
 }
+/**
+ * @ManyToOne(() => Animal, (animal) => animal.medicalCheckups)
+@JoinColumn({ name: 'animal_id' })
+animal: Animal;
+ */

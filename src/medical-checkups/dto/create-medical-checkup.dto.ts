@@ -15,6 +15,7 @@ export class CreateMedicalCheckupDto {
   @IsPositive()
   @IsNotEmpty()
   animalId: number;
+  
 
   @ApiPropertyOptional({ example: '2025-07-01T10:00:00Z', description: 'Fecha y hora programada de inicio' })
   @IsOptional()
